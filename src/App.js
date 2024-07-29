@@ -83,10 +83,17 @@ align-items: center;
 
 .logo{
   margin-left: 40px;
- color: red;
+  color: red;
   font-size: 60px;
   font-style: italic;
   font-weight: 700;
+
+
+  @media (0<width<600px){
+    font-size:40px ;
+    margin-top: 20px;
+    margin-left: 1px;
+  }
 }
 
 .search{
