@@ -29,9 +29,7 @@ const Card = ({ title, image, text, price }) => (
             <div className='description'>
                 <h2>{title}</h2>
                 <p className='text'>{text}</p>
-                <button className='price'>${price}</button> 
-              
-               
+                <button className='price'>${price}</button>     
             </div>
         </div>
         </div>
@@ -44,39 +42,65 @@ const FoodCard = styled.div`
 .cont{
    
     width:100%;
-    height:100%;
+    /* height:100%; */
     display: flex;
   margin-top: 30px;
-  margin-left: 55px;
+  margin-left: 55px; 
   justify-content: center;
-   
    
 }
 
-
-
-  .card{
+.card{
 
     height: 180px;
     width:380px;
     margin-left: 20px;
+    margin-bottom: 10px;
     display: flex;
+ 
     border: 1px solid white;
     border-radius: 20px;
-    gap: 10px;
-  }
+    gap: 2px;
+ 
 
-  img{
-    margin-top: 15px;
-  }
-
+    @media (max-width: 600px) {
+            width: 250px;
+            height: 250px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+            height: auto;
+            padding: 10px;
+        }
+}
+  
   .description{
     margin-top: 20px;
   }
- 
+  @media (max-width:600px){
+     margin-top: -25px;
+  }
+  
+  img {
+        margin-top: 15px;
+        width: 150px;
+        height: auto;
+
+        @media (max-width: 600px) {
+            width: 100px;
+            margin-bottom: -20px;
+            margin-top:auto;
+        }
+    }
+
   .text{
     margin-top: 20px;
     font-size: 15px;
+
+    @media (max-width:600px){
+     margin:5px;
+  }
   }
   
 
@@ -86,9 +110,13 @@ const FoodCard = styled.div`
     background-color: red;
     border-radius: 10px;
     margin-top: 15px;
-    margin-left: 100px;
+    margin-left: 130px;
     padding: 10px;
     color: aqua;
     cursor: pointer;
+
+    @media (max-width:600px){
+     margin-left:170px;
+  }
   }
 `;

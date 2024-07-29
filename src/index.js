@@ -14,6 +14,7 @@ body{
   background-color:ivory;
   color: white;
   min-height: 100vh;
+  
 
 }
 `;
