@@ -1,15 +1,16 @@
 
-
 import React from 'react'
 import { useState } from 'react';
 import styled from "styled-components"
 import FoodCards from './Components/FoodCards';
 import data from './Components/Carddata';
-
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
 const App = () => {
 
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [Action, setAction] = useState('none');
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -24,26 +25,32 @@ const App = () => {
 
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
-
-  
   });
+
+
 
   return (
     <Container>
-      <TopContainer>
-        <div className='logo'>
-          Foody Zone 
+      {
+        Action === 'none' ?(
+          <>
+           <TopContainer>
+       <div className='logo'>
+          Foody Zone
         </div>
         <div className='search'>
           <input placeholder='Search Food'
-          value={searchQuery} 
-          onChange={handleSearchChange}/>
+            value={searchQuery}
+            onChange={handleSearchChange} />
         </div>
+        <div className='entry'>
+           <button className="btnsign" onClick={() => setAction('signin')}>Sign in</button>
+                <button className="btnlog" onClick={() => setAction('login')}>Login</button>
+              </div>
+            
+              </TopContainer>
 
-
-
-      </TopContainer>
-      <FilterContainer>
+              <FilterContainer>
         <Button onClick={() => handleFilterChange('All')}>All</Button>
         <Button onClick={() => handleFilterChange('Breakfast')}>Breakfast</Button>
         <Button onClick={() => handleFilterChange('Lunch')}>Lunch</Button>
@@ -53,8 +60,18 @@ const App = () => {
       </FilterContainer>
 
       <FoodCardContainer>
-           <FoodCards data={filteredData}/>
+        <FoodCards data={filteredData} />
       </FoodCardContainer>
+     </>
+
+        ) : (
+          <>
+           {Action === 'signin' && <SignUp setAction={setAction} />}
+           {Action === 'login' && <Login setAction={setAction} />}
+          </>
+        )
+      }
+     
     </Container>
   );
 };
@@ -105,11 +122,31 @@ align-items: center;
   height:40px ;
   font-size: 16px;
   padding: 0 10px;
-  margin-right: 15px;
+  margin-left: 800px;
+  margin-top: 120px;
 
   
 }
 }
+
+
+.btnsign{
+
+  color: black;
+  padding: 6px 12px;
+  border-radius: 5px;
+  gap:10px;
+  margin-right: 10px;
+} 
+
+.btnlog{
+  color:black;
+  padding: 6px 12px;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-right: 10px;
+}
+
 `
   ;
 
@@ -124,7 +161,7 @@ const Button = styled.button`
 background: #ff4343;
 border-radius: 5px;
 padding: 6px 12px;
- border: none; 
+ border: 1px solid black; 
 color: white; 
 
 cursor: pointer;
